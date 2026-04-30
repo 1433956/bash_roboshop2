@@ -61,7 +61,7 @@ user=$(id roboshop)
     echo -e "$G system user not created, Creting system user:: $user $W" | tee -a $LOG_FILE
     
     useradd --system --home /app --shell /sbin/nologin  --comment "creating system user" roboshop
-    exit 1
+   
     fi
 
     mkdir -p /app
