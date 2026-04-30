@@ -17,16 +17,16 @@ VALIDATE $? "install mysql client in shipping client " &>> $LOG_FILE
 
 mysql -h mysql.devops26.sbs -u root -p$rootpasswd -e 'use cities'  &>> $LOG_FILE
 
-if [ $? -eq 0 ]
+if [ $? -ne 0 ]
 then
-    echo $R data is not loaded.. $Y Data loading $W" &>> $LOG_FILE
+    echo -e $R data is not loaded.. $Y Data loading $W" &>> $LOG_FILE
     mysql -h mysql.devops26.sbs -uroot -p$rootpasswd < /app/db/schema.sql &>> $LOG_FILE
     mysql -h mysql.devops26.sbs -uroot -p$rootpasswd < /app/db/app-user.sql  &>> $LOG_FILE
     mysql -h mysql.devops26.sbs -uroot -p$rootpasswd < /app/db/master-data.sql &>> $LOG_FILE
-    VALIDATE $? "data loaded is "
+    VALIDATE $? "Loading data into MySQL"
 else
-   echo $G data is  loaded.. $Y Data loading is skipped:: $W" &>> $LOG_FILE
-   VALIDATE $? "data loadeding skipped "
+   echo -e $G data is  loaded.. $Y Data loading is skipped:: $W" &>> $LOG_FILE
+   
 fi
 
 
