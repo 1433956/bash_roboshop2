@@ -1,5 +1,6 @@
 #!/bin/bash
 Start_time=$(date +%s)
+
 LOG_FOLDER="/var/log/roboshop-logs"
 mkdir -p $LOG_FOLDER
 LOG_FILENAME=$(echo $0 | cut -d "." -f1)
