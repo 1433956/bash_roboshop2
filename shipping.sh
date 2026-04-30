@@ -15,20 +15,16 @@ read -s rootpasswd
 dnf install mysql -y &>> $LOG_FILE
 VALIDATE $? "install mysql client in shipping client " &>> $LOG_FILE
 
-mysql -h mysql.devops26.sbs -u root -p$rootpasswd -e 'use cities'  &>> $LOG_FILE
-
+mysql -h mysql.devops26.sbs -u root -p$rootpasswd -e 'use cities' &>>$LOG_FILE
 if [ $? -ne 0 ]
 then
-    echo -e $R data is not loaded.. $Y Data loading $W" &>> $LOG_FILE
-    mysql -h mysql.devops26.sbs -uroot -p$rootpasswd < /app/db/schema.sql &>> $LOG_FILE
-    mysql -h mysql.devops26.sbs -uroot -p$rootpasswd < /app/db/app-user.sql  &>> $LOG_FILE
-    mysql -h mysql.devops26.sbs -uroot -p$rootpasswd < /app/db/master-data.sql &>> $LOG_FILE
+    mysql -h mysql.devops26.sbs -uroot -p$rootpasswd < /app/db/schema.sql &>>$LOG_FILE
+    mysql -h mysql.devops26.sbs -uroot -p$rootpasswd < /app/db/app-user.sql  &>>$LOG_FILE
+    mysql -h mysql.devops26.sbs -uroot -p$rootpasswd < /app/db/master-data.sql &>>$LOG_FILE
     VALIDATE $? "Loading data into MySQL"
 else
-   echo -e $G data is  loaded.. $Y Data loading is skipped:: $W" &>> $LOG_FILE
-   
+    echo -e "Data is already loaded into MySQL ... $Y SKIPPING $N"
 fi
-
 
 systemctl restart shipping
 VALIDATE $? "restart shipping service  "
