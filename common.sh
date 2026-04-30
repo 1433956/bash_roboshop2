@@ -20,6 +20,7 @@ check_root(){
   else 
      echo -e "$G logged as a root user:: $W " &>> $LOG_FILE
   fi
+}
 
   
     VALIDATE(){
@@ -32,7 +33,7 @@ check_root(){
     fi
 
     }
-}
+
 
 nodejs_setup(){
 
