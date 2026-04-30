@@ -9,9 +9,6 @@ system_setup
 
 echo -e "$G pleae enter mysql root psswd::$W"
 read -s rootpasswd
-
-
-
 dnf install mysql -y &>> $LOG_FILE
 VALIDATE $? "install mysql client in shipping client " &>> $LOG_FILE
 
@@ -26,7 +23,7 @@ else
     echo -e "Data is already loaded into MySQL ... $Y SKIPPING $N"
 fi
 
-systemctl restart shipping
+systemctl restart shipping &>> $LOG_FILE
 VALIDATE $? "restart shipping service  "
 
 total_execution_time

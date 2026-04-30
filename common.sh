@@ -79,11 +79,10 @@ user=$(id roboshop)
 
 }
 maven_setup(){
-dnf install maven -y &>> $LOG_FILE
+    dnf install maven -y &>> $LOG_FILE
     VALIDATE $? "installing  maven"
 
     mvn clean package &>> $LOG_FILE
-
     VALIDATE $? "maven package installing::"
 
     mv target/shipping-1.0.jar shipping.jar 
