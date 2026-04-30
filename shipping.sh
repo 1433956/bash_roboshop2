@@ -23,7 +23,7 @@ fi
 
 VALIDATE $? "install mysql client in shipping client " &>> $LOG_FILE
 
-mysql -h mysql.devops26.sbs -uroot -p$rootpasswd -e 'use cities'  &>> $LOG_FILE
+mysql -h mysql.devops26.sbs -u root -p$rootpasswd -e 'use cities'  &>> $LOG_FILE
 
 if [ $? -ne 0 ]
 then
