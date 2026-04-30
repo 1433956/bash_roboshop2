@@ -10,17 +10,9 @@ system_setup
 echo -e "$G pleae enter mysql root psswd::$W"
 read -s rootpasswd
 
-dnf list --installed mysql &>> $LOG_FILE
-if [ $? -eq 1 ]
-then 
-   dnf install mysql -y &>> $LOG_FILE
-   echo -e "$G not installed in machine installing mysql $W" &>> $LOG_FILE
-else
-   echo -e "$Y installed in machine Skipping installing mysql $W" &>> $LOG_FILE
-   VALIDATE $? "alreday insatlled, Skipping installing mysql is "
-   
-fi 
 
+
+dnf install mysql -y &>> $LOG_FILE
 VALIDATE $? "install mysql client in shipping client " &>> $LOG_FILE
 
 mysql -h mysql.devops26.sbs -u root -p$rootpasswd -e 'use cities'  &>> $LOG_FILE
