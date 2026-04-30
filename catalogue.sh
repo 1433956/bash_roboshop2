@@ -2,8 +2,10 @@
 
 source ./common.sh
 app_name="catalogue"
-nodejs_setup
+check_root
 app_setup
+nodejs_setup
+
 system_setup
 
  cp $current_directory/mongo.repo  /etc/yum.repos.d/mongo.repo &>> $LOG_FILE
