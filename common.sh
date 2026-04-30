@@ -91,6 +91,15 @@ maven_setup(){
 
 }
 
+python_setup(){
+
+    dnf install python3 gcc python3-devel -y &>>$LOG_FILE
+    VALIDATE $? "Install Python3 packages"
+
+    pip3 install -r requirements.txt &>>$LOG_FILE
+    VALIDATE $? "Installing dependencies"
+}
+
 
 system_setup(){
     
