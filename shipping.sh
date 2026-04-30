@@ -17,7 +17,7 @@ VALIDATE $? "install mysql client in shipping client " &>> $LOG_FILE
 
 mysql -h mysql.devops26.sbs -u root -p$rootpasswd -e 'use cities'  &>> $LOG_FILE
 
-if [ $? -ne 0 ]
+if [ $? -eq 0 ]
 then
     echo $R data is not loaded.. $Y Data loading $W" &>> $LOG_FILE
     mysql -h mysql.devops26.sbs -uroot -p$rootpasswd < /app/db/schema.sql &>> $LOG_FILE
