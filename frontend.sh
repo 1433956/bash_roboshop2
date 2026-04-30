@@ -18,13 +18,11 @@ systemctl enable nginx &>> $LOG_FILE
 VALIDATE $? "enable nginx "
 systemctl start nginx  &>> $LOG_FILE
 VALIDATE $? "start nginx "
-rm -rf /usr/share/nginx/html/* &>> $LOG_FILE
 
+rm -rf /usr/share/nginx/html/* &>> $LOG_FILE
 VALIDATE $? "removing default content "
 
-
 curl -o /tmp/frontend.zip https://roboshop-artifacts.s3.amazonaws.com/frontend-v3.zip &>> $LOG_FILE
-
 VALIDATE $? "downloading code "
 
 cd /usr/share/nginx/html 
