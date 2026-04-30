@@ -33,10 +33,4 @@ fi
 systemctl restart shipping
 VALIDATE $? "restart shipping service  "
 
-End_time=$(date +%s)
-
-Total_execution_time=$(($End_time - $Start_time))
-
-echo -e " $G Total_execution_time:: $Total_execution_time:: $W"
- 
-
+total_execution_time
