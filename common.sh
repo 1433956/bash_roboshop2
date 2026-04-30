@@ -1,7 +1,5 @@
 #!/bin/bash
-
 Start_time=$(date +%s)
-
 LOG_FOLDER="/var/log/roboshop-logs"
 mkdir -p $LOG_FOLDER
 LOG_FILENAME=$(echo $0 | cut -d "." -f1)
@@ -11,7 +9,6 @@ R="\e[31m"
 G="\e[32m"
 Y="\e[33m"
 W="\e[0m"
-
 echo -e "$G script started executing at :: $(date) $W"| tee -a $LOG_FILE
 
 check_root(){
@@ -37,11 +34,11 @@ check_root(){
 }
 
 total_execution_time(){
-End_time=$(date +%s)
+    End_time=$(date +%s)
 
-Total_execution_time=$(($End_time - $Start_time ))
- 
- echo -e "$G total execution::$W $Total_execution_time"
+    Total_execution_time=$(($End_time - $Start_time ))
+    
+    echo -e "$G total execution::$W $Total_execution_time"
 
 
 }
