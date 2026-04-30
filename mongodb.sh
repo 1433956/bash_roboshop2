@@ -1,5 +1,5 @@
 #!/bin/bash
-script common.sh
+source ./common.sh
 
 check_root
 
@@ -18,4 +18,4 @@ VALIDATE $? "channging mongod conf "
 systemctl restart mongod &>> $LOG_FILE
 VALIDATE $? "restart mongodb"
 
-Total_execution_time
+total_execution_time

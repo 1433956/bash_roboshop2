@@ -1,32 +1,29 @@
- #!/bin/bash
+#!/bin/bash
+
 Start_time=$(date +%s)
 
+LOG_FOLDER="/var/log/roboshop-logs"
+mkdir -p $LOG_FOLDER
+LOG_FILENAME=$(echo $0 | cut -d "." -f1)
+LOG_FILE="$LOG_FOLDER/$LOG_FILENAME.log"
+
+R="\e[31m"
+G="\e[32m"
+Y="\e[33m"
+W="\e[0m"
+
+echo -e "$G script started executing at :: $(date) $W"| tee -a $LOG_FILE
+
 check_root(){
-    
-    
-    LOG_FOLDER="/var/log/roboshop-logs"
-    mkdir -p $LOG_FOLDER
-    LOG_FILENAME=$(echo $0 | cut -d "." -f1)
-    LOG_FILE="$LOG_FOLDER/$LOG_FILENAME.log"
+  if [ $? -ne 0 ]
+  then
+     echo -e "$R please log user as root user::  $W" &>> $LOG_FILE
+     exit 1
+  else 
+     echo -e "$G logged as a root user:: $W " &>> $LOG_FILE
+  fi
 
-    R="\e[31m"
-    G="\e[32m"
-    Y="\e[33m"
-    W="\e[0m"
-    current_directory=$PWD
-
-    USERID=$(id -u)
-
-
-
-    if [ $? -ne 0 ]
-    then
-    echo -e "$R please log user as root user::  $W" &>> $LOG_FILE
-    exit 1
-    else 
-        echo -e "$G logged as a root user:: $W " &>> $LOG_FILE
-    fi
-
+  
     VALIDATE(){
     if [ $1 -ne 0 ]
     then 
@@ -39,11 +36,12 @@ check_root(){
     }
 }
 
+total_execution_time(){
+End_time=$(date +%s)
 
-Total_execution_time(){
-    End_time=$(date +%s)
+Total_execution_time=$(($End_time - $Start_time ))
+ 
+ echo -e "$G total execution::$W $Total_execution_time"
 
-    Total_execution_time=$(($End_time - $Start_time ))
-    
-    echo -e "$G total execution::$W $Total_execution_time"
+
 }
