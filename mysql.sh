@@ -8,13 +8,13 @@ read -s rootpasswd
 echo -e "$G  mysql root psswd:: $rootpasswd $W"
  
 dnf install mysql-server -y &>> $LOG_FILE
-VALIDATE $? "mysql installation is"  &>> $LOG_FILE
+VALIDATE $? "mysql installation is"  
 
 systemctl enable mysqld   &>> $LOG_FILE
-VALIDATE $? "enable mysql "  &>> $LOG_FILE
+VALIDATE $? "enable mysql "  
 
 systemctl start mysqld  &>> $LOG_FILE
-VALIDATE $? "start mysql "  &>> $LOG_FILE
+VALIDATE $? "start mysql "  
 
 mysql_secure_installation --set-root-pass $rootpasswd
 
