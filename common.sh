@@ -78,6 +78,20 @@ user=$(id roboshop)
     VALIDATE $? "unziping the $app_name folder"
 
 }
+maven_setup(){
+dnf install maven -y &>> $LOG_FILE
+    VALIDATE $? "installing  maven"
+
+    mvn clean package &>> $LOG_FILE
+
+    VALIDATE $? "maven package installing::"
+
+    mv target/shipping-1.0.jar shipping.jar 
+    VALIDATE $? "renaming shipping jar file::"
+
+
+}
+
 
 system_setup(){
     
